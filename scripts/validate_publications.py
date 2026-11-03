@@ -44,7 +44,7 @@ def main():
             raise ValueError(f"Line {n}: related_label needs related_url")
     if years!=sorted(years,reverse=True):
         raise ValueError("Publications must be sorted by descending year")
-    for path in ["index.html","assets/style.css","assets/site.js","assets/profile.jpg"]:
+    for path in ["index.html","assets/style.css","assets/site.js","assets/profile.jpg", "assets/profile-full.jpg"]:
         if not (ROOT/path).is_file():
             raise ValueError(f"Required site asset missing: {path}")
     print(f"Validation PASS: {len(rows)} publications, years {min(years)}–{max(years)}, {len(dois)} DOIs")

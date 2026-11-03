@@ -31,7 +31,7 @@ jobs:
         run: |
           mkdir -p _site/assets _site/data
           cp .nojekyll _site/
-          cp assets/style.css assets/site.js assets/favicon.svg assets/profile.jpg _site/assets/
+          cp assets/style.css assets/site.js assets/favicon.svg assets/profile.jpg assets/profile-full.jpg _site/assets/
           cp data/publications_manual.csv _site/data/
       - name: Verify server-rendered publications
         run: |

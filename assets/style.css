@@ -22,8 +22,8 @@ button, input { font: inherit; }
 .about { max-width: 625px; }
 .about p { font-size: 17px; line-height: 1.65; margin: 0 0 17px; }
 .field-name { font-weight: 610; }
-.portrait { margin: 0; width: 238px; max-width: 100%; border-radius: 4px; background: #e6e1d7; box-shadow: 0 1px 10px rgba(0,0,0,.055); }
-.portrait img { width: 100%; height: auto; display: block; }
+.portrait { margin: 0; width: 238px; max-width: 100%; height: auto; overflow: visible; border-radius: 4px; background: #e6e1d7; box-shadow: 0 1px 10px rgba(0,0,0,.055); }
+.portrait img { display: block; width: 100%; height: auto; max-height: none; object-fit: contain; object-position: center; aspect-ratio: auto; }
 .bibliography { padding: 62px 0 80px; }
 .section-title-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px 24px; }
 h2 { margin: 0; font-size: 31px; font-weight: 620; letter-spacing: -.75px; line-height: 1.25; }
