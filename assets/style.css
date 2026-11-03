@@ -17,14 +17,16 @@ button, input { font: inherit; }
 .skip-link { position: absolute; top: -100px; left: 10px; padding: 12px; color: white; background: #1e3b2c; z-index: 20; }
 .skip-link:focus { top: 10px; }
 .page { width: min(1040px, calc(100% - 72px)); margin: 0 auto; }
-.profile { display: grid; grid-template-columns: minmax(0,1fr) 238px; gap: clamp(32px,6vw,96px); padding: 88px 0 80px; align-items: center; border-bottom: 1px solid var(--line); }
-.profile h1 { font-size: clamp(36px, 5.2vw, 55px); letter-spacing: -1.7px; font-weight: 620; line-height: 1.14; margin: 0 0 32px; }
+.profile-layout { display: grid; grid-template-columns: minmax(0,1fr) 238px; column-gap: clamp(28px,5vw,64px); align-items: start; }
+.profile { grid-column: 1; grid-row: 1; min-width: 0; padding: 30px 0 0; }
+.profile-layout > main { grid-column: 1; grid-row: 2; min-width: 0; }
+.profile h1 { font-size: clamp(36px, 5.2vw, 55px); letter-spacing: -1.7px; font-weight: 620; line-height: 1.14; margin: 0 0 26px; }
 .about { max-width: 625px; }
 .about p { font-size: 17px; line-height: 1.65; margin: 0 0 17px; }
 .field-name { font-weight: 610; }
-.portrait { margin: 0; width: 238px; max-width: 100%; height: auto; overflow: visible; border-radius: 4px; background: #e6e1d7; box-shadow: 0 1px 10px rgba(0,0,0,.055); }
+.portrait { grid-column: 2; grid-row: 1 / span 2; align-self: start; margin: 30px 0 0; width: 238px; max-width: 100%; height: auto; overflow: visible; border-radius: 4px; background: #e6e1d7; box-shadow: 0 1px 10px rgba(0,0,0,.055); }
 .portrait img { display: block; width: 100%; height: auto; max-height: none; object-fit: contain; object-position: center; aspect-ratio: auto; }
-.bibliography { padding: 62px 0 80px; }
+.bibliography { padding: 30px 0 80px; }
 .section-title-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px 24px; }
 h2 { margin: 0; font-size: 31px; font-weight: 620; letter-spacing: -.75px; line-height: 1.25; }
 .publication-count { font-size: 13px; color: var(--muted); }
@@ -51,19 +53,21 @@ footer p { margin: 0; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 @media (max-width: 680px) {
  .page { width: min(100% - 40px, 560px); }
- .profile { grid-template-columns: minmax(0,1fr) 125px; align-items: start; gap: 16px; padding: 44px 0 48px; }
- .profile h1 { font-size: clamp(30px,7vw,41px); letter-spacing: -.8px; margin-bottom: 24px; }
- .about p { font-size: 15px; margin-bottom: 13px; }
- .portrait { width: 125px; }
- .bibliography { padding-top: 42px; }
+ .profile-layout { grid-template-columns: minmax(0,1fr) 125px; column-gap: 18px; }
+ .profile { grid-column: 1; grid-row: 1; padding-top: 22px; }
+ .profile h1 { font-size: clamp(30px,7vw,41px); letter-spacing: -.8px; margin-bottom: 20px; }
+ .about p { font-size: 15px; margin-bottom: 13px; overflow-wrap: anywhere; }
+ .portrait { grid-column: 2; grid-row: 1; width: 125px; margin-top: 22px; }
+ .profile-layout > main { grid-column: 1 / -1; grid-row: 2; }
+ .bibliography { padding-top: 26px; }
  .year-group { display: block; padding-top: 17px; }
  .year-group h3 { margin-bottom: 19px; }
  .publication { padding-bottom: 22px; }
  .publication + .publication { padding-top: 22px; }
 }
 @media (max-width: 440px) {
- .profile { grid-template-columns: minmax(0,1fr) 114px; }
- .portrait { grid-row: auto; width: 114px; justify-self: end; }
+ .profile-layout { grid-template-columns: minmax(0,1fr) 114px; column-gap: 14px; }
+ .portrait { width: 114px; }
  .profile h1 { margin: 0 0 20px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
