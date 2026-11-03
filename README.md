@@ -14,7 +14,7 @@ To add or revise a publication directly on GitHub:
 2. Insert or edit one record. Keep newer publication years above older ones. Within a year, any order is acceptable.
 3. Use the existing records as formatting examples. For titles or fields containing commas, wrap the field in double quotes; to include a literal double quote, write it twice.
 4. Commit your changes to `main`, or submit a pull request.
-5. GitHub Actions will **validate** the CSV and deploy the resulting static page. It will **not** fetch or modify publication data.
+5. GitHub Actions will **validate** the CSV, rebuild the static publication entries in the deployed HTML, and publish the resulting page. It will **not** fetch or modify publication data.
 
 CSV columns:
 
@@ -49,13 +49,14 @@ This initial curation is a starting point; publication years and types can be re
 
 ## Site files
 
-- `index.html`: text, links, and page structure.
-- `assets/profile.jpg`: cropped and compressed version of the user-provided portrait.
+- `index.html`: profile, links, page structure and a static publication snapshot used as a fallback. The deployed HTML bibliography is regenerated from the CSV on every deployment.
+- `assets/profile.jpg`: full-frame, proportionally resized version of the user-provided portrait (no cropping).
 - `assets/style.css`: mobile-friendly visual styling.
-- `assets/site.js`: client-side CSV reader, chronological display and text search.
+- `assets/site.js`: optional search enhancement; publications are visible even if JavaScript is disabled.
 - `data/publications_manual.csv`: **manual bibliography**, the authoritative live source.
 - `data/publications_ids.csv`: preserved historical IDS export.
 - `scripts/validate_publications.py`: publication data validation.
+- `scripts/render_publications.py`: regenerates the deployed static HTML from the manual CSV.
 - `.github/workflows/deploy-pages.yml`: deployment only, no publication import.
 
 ## Local testing
@@ -64,10 +65,11 @@ From the repository root:
 
 ```bash
 python3 scripts/validate_publications.py
-python3 -m http.server 8000
+python3 scripts/render_publications.py _site
+python3 -m http.server --directory _site 8000
 ```
 
-Open http://localhost:8000. Browsers generally do not allow reading the CSV via `file://`, so use a local HTTP server.
+Open http://localhost:8000. The generated publication list does not require JavaScript or an in-browser CSV request.
 
 ## Publication updates reminder
 
